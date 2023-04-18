@@ -35,8 +35,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <Producto value={this.state.p} />
+      <div className="row">
+      {this.state.productos.map((producto) => (
+        <Producto
+          key={producto.id}
+          value={producto}
+        />
+      ))}
       </div>
     );
   }
