@@ -20,7 +20,7 @@ function Producto(props) {
         <Card.Text>
           {props.value.precio}€
         </Card.Text>
-        <Button onClick={()=>{ props.onClick()}} variant="primary">Añadir al carrito</Button>
+        <Button onClick={()=>{ props.onClick2()}} variant="primary">Añadir al carrito</Button>
       </Card.Body>
 
     </Card >
