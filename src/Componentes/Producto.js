@@ -1,17 +1,16 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-function Producto() {
+function Producto(props) {
     return (
       <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
+        <Card.Img variant="top" src={props.value.imagen} />
         <Card.Body>
-          <Card.Title>Card Title</Card.Title>
+          <Card.Title>{props.value.nombre}</Card.Title>
           <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            {props.value.descripcion}
           </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+          <Button variant="primary">Añadir al carrito</Button>
         </Card.Body>
       </Card>
     );
