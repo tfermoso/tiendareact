@@ -1,7 +1,7 @@
 import './App.css';
 import React from 'react';
 import Producto from './Producto';
-import MyComponent from './PopOver';
+
 
 class App extends React.Component {
   constructor(props) {
@@ -21,7 +21,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <Producto value={this.state.p} />
-        <MyComponent/>
       </div>
     );
   }
