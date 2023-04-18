@@ -43,13 +43,16 @@ class App extends React.Component {
             <Producto
               key={producto.id}
               value={producto}
+              onClick={()=>this.manejador(producto)}
             />
           ))}
         </div>
       </div>
     );
   }
-
+  manejador(){
+    alert("hola desde app");
+  }
 }
 
 export default App;
