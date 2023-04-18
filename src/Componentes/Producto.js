@@ -3,11 +3,11 @@ import { OverlayTrigger, Popover, Button, Card } from 'react-bootstrap';
 
 function Producto(props) {
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card style={{ width: '18rem',position:'relative' }}>
       <OverlayTrigger
         trigger="hover"
         placement="center"
-        overlay={<Popover>
+        overlay={<Popover style={{ position: 'absolute', top: '50px', left: '250px' }}>
           <Popover.Header as="h3">{props.value.nombre}</Popover.Header>
           <Popover.Body>
             {props.value.descripcion}
