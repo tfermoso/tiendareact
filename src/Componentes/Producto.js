@@ -6,7 +6,7 @@ function Producto(props) {
     <Card style={{ width: '18rem',position:'relative' }}>
       <OverlayTrigger
         trigger="hover"
-        placement="center"
+        placement="bottom"
         overlay={<Popover style={{ position: 'absolute', top: '50px', left: '250px' }}>
           <Popover.Header as="h3">{props.value.nombre}</Popover.Header>
           <Popover.Body>

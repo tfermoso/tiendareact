@@ -1,12 +1,13 @@
 import './App.css';
 import React from 'react';
 import Producto from './Producto';
-import { Navbar, Nav,NavDropdown } from 'react-bootstrap';
+import NavbarLibros from './NavBarLibros';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      'carrito':[4],
       'productos': [{
         id: 1,
         nombre: "Learn PHP 7",
@@ -36,23 +37,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="container">
-        <Navbar bg="light" expand="lg">
-          <Navbar.Brand href="#">Mi sitio web</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="#inicio">Inicio</Nav.Link>
-              <Nav.Link href="#nosotros">Nosotros</Nav.Link>
-              <NavDropdown title="Productos" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#producto1">Producto 1</NavDropdown.Item>
-                <NavDropdown.Item href="#producto2">Producto 2</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#todos-los-productos">Todos los productos</NavDropdown.Item>
-              </NavDropdown>
-              <Nav.Link href="#contacto">Contacto</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
+       <NavbarLibros carrito={this.state.carrito.length}/>
         <div className="row">
           {this.state.productos.map((producto) => (
             <Producto
