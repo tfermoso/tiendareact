@@ -1,6 +1,6 @@
 import { OverlayTrigger, Popover } from 'react-bootstrap';
 
-function MyPopoverContent() {
+function MyPopoverContent2() {
     return (
       <Popover>
         <Popover.Header as="h3">Título del popover</Popover.Header>
@@ -14,7 +14,7 @@ function MyPopoverContent() {
   function MyComponent() {
     return (
       <div>
-        <OverlayTrigger trigger="click" placement="right" overlay={<MyPopoverContent />}>
+        <OverlayTrigger trigger="hover" placement="center" overlay={<MyPopoverContent2 />}>
           <button>Mostrar Popover</button>
         </OverlayTrigger>
       </div>
