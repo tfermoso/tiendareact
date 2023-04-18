@@ -51,7 +51,9 @@ class App extends React.Component {
     );
   }
   manejador(p){
-   console.log(p)
+   const nuevoCarrito=[...this.state.carrito];
+   nuevoCarrito.push(p);
+   this.setState({'carrito':nuevoCarrito});
   }
 }
 
