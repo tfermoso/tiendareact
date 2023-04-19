@@ -65,8 +65,8 @@ class App extends React.Component {
         <div className="container">
           <NavbarLibros carrito={this.state.carrito.length} />
           <Routes>
-            <Route path="/" exact element={<Home  productos={this.state.productos} manejador={() => this.manejador()} />}></Route>
-            <Route path="/carrito" element={<Carrito />}></Route>
+            <Route path="/" exact element={<Home  productos={this.state.productos} manejador={(p) => this.manejador(p)} />}></Route>
+            <Route path="/carrito" element={<Carrito cart={this.state.carrito} />}></Route>
           </Routes>
         </div>
       </Router>
