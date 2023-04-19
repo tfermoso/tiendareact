@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 function NavbarLibros(props){
 
   useEffect(()=>{
@@ -12,8 +13,8 @@ function NavbarLibros(props){
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#inicio">Home</Nav.Link>
-            <Nav.Link href="#carrito">Carrito({props.carrito})</Nav.Link>              
+            <Link to="/">Home</Link>
+            <Link to="/carrito">Carrito({props.carrito})</Link>             
           </Nav>
         </Navbar.Collapse>
       </Navbar>

@@ -1,8 +1,10 @@
 import './App.css';
 import React from 'react';
-import Producto from './Producto';
+
+import Home from './Home';
+import Carrito from './Carrito';
 import NavbarLibros from './NavBarLibros';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route,Routes } from 'react-router-dom';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -37,20 +39,20 @@ class App extends React.Component {
   componentDidMount() {
     fetch("http://localhost:3500")
       .then(datos => datos.json())
-      .then(datos => { 
-        let productos=[...this.state.productos];
-        productos=datos.map(p=>{
+      .then(datos => {
+        let productos = [...this.state.productos];
+        productos = datos.map(p => {
           return {
             id: p.ID,
-            nombre:p.Nombre,
-            descripcion:p.Descripcion,
-            precio:p.Precio,
-            imagen:p.Imagen
+            nombre: p.Nombre,
+            descripcion: p.Descripcion,
+            precio: p.Precio,
+            imagen: p.Imagen
           }
         });
         console.log(productos)
-        this.setState({'productos':productos})
-         
+        this.setState({ 'productos': productos })
+
       })
       .catch(err => {
         console.log(err);
@@ -59,18 +61,15 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <NavbarLibros carrito={this.state.carrito.length} />
-        <div className="row">
-          {this.state.productos.map((producto) => (
-            <Producto
-              key={producto.id}
-              value={producto}
-              onClick2={() => this.manejador(producto)}
-            />
-          ))}
+      <Router>
+        <div className="container">
+          <NavbarLibros carrito={this.state.carrito.length} />
+          <Routes>
+            <Route path="/" exact render={(props) => <Home {...props} productos={this.state.productos} manejador={() => this.manejador()} />} />
+            <Route path="/carrito" component={Carrito} />
+          </Routes>
         </div>
-      </div>
+      </Router>
     );
   }
   manejador(p) {
