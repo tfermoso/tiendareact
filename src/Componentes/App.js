@@ -37,7 +37,20 @@ class App extends React.Component {
   componentDidMount() {
     fetch("http://localhost:3500")
       .then(datos => datos.json())
-      .then(datos => { console.log(datos) })
+      .then(datos => { 
+        let productos=[...this.state.productos];
+        productos=datos.map(p=>{
+          return {
+            id: p.ID,
+            nombre:p.Nombre,
+            descripcion:p.Descripcion,
+            precio:p.Precio,
+            imagen:p.Imagen
+          }
+        });
+        this.setState({'productos':productos})
+        console.log(productos) 
+      })
       .catch(err => {
         console.log(err);
       })
