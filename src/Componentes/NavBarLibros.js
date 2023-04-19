@@ -13,8 +13,8 @@ function NavbarLibros(props){
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link to="/">Home</Link>
-            <Link to="/carrito">Carrito({props.carrito})</Link>             
+            <Link className="nav-link" to="/">Home</Link>
+            <Link className="nav-link" to="/carrito">Carrito({props.carrito})</Link>             
           </Nav>
         </Navbar.Collapse>
       </Navbar>
