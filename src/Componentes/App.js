@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import Producto from './Producto';
 import NavbarLibros from './NavBarLibros';
-
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -48,8 +48,9 @@ class App extends React.Component {
             imagen:p.Imagen
           }
         });
+        console.log(productos)
         this.setState({'productos':productos})
-        console.log(productos) 
+         
       })
       .catch(err => {
         console.log(err);
