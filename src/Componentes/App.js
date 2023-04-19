@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      'carrito':[4],
+      'carrito': [],
       'productos': [{
         id: 1,
         nombre: "Learn PHP 7",
@@ -34,26 +34,35 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    fetch("http://localhost:3500")
+      .then(datos => datos.json())
+      .then(datos => { console.log(datos) })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
   render() {
     return (
       <div className="container">
-       <NavbarLibros carrito={this.state.carrito.length}/>
+        <NavbarLibros carrito={this.state.carrito.length} />
         <div className="row">
           {this.state.productos.map((producto) => (
             <Producto
               key={producto.id}
               value={producto}
-              onClick2={()=>this.manejador(producto)}
+              onClick2={() => this.manejador(producto)}
             />
           ))}
         </div>
       </div>
     );
   }
-  manejador(p){
-   const nuevoCarrito=[...this.state.carrito];
-   nuevoCarrito.push(p);
-   this.setState({'carrito':nuevoCarrito});
+  manejador(p) {
+    const nuevoCarrito = [...this.state.carrito];
+    nuevoCarrito.push(p);
+    this.setState({ 'carrito': nuevoCarrito });
   }
 }
 
