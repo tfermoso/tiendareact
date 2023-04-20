@@ -1,6 +1,6 @@
 function Carrito(props) {
     let total = 0;
-
+    props.cart.map(p=>total+=parseFloat(p.cantidad*p.precio));
     return (
         <div>
             <h3>Lista del carrito</h3>
