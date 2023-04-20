@@ -48,7 +48,7 @@ class App extends React.Component {
             <Route path="/carrito" element={<Carrito 
             cart={this.state.carrito} 
             eliminarProducto={(p)=>this.eliminarProducto(p)}
-            pagar={(email)=>{ alert(email); }} />}></Route>
+            pagar={(email)=>{ this.pagar(email) }} />}></Route>
           </Routes>
         </div>
       </Router>
@@ -70,13 +70,18 @@ class App extends React.Component {
   }
 
   pagar(email){
+    let nuevoCarrito=this.state.carrito.map(p=>({
+        id:p.id,
+        precio:p.precio,
+        cantidad:p.cantidad
+    }))
     let datos={
-      'carrito':this.state.carrito,
+      'carrito':nuevoCarrito,
       'email':email
     }
     let url="http://localhost:3500/pagar";
     fetch(url,{
-      method:'POST',
+      method: 'POST',
       headers:{
         'Content-Type': 'application/json'
       },
