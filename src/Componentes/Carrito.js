@@ -15,17 +15,20 @@ function Carrito(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.cart.map((p) => (
+                    {  
+                                
+                        props.cart.map((p) => (
                         <tr>
                             <th scope="row">{p.nombre}</th>
                             <td>{p.cantidad}</td>
                             <td>{p.precio}</td>
                             <td>{p.cantidad * p.precio}€</td>
                             <td>
-
+                            <button onClick={()=>{props.eliminarProducto(p)}} class="btn btn-danger" type="submit" name="btnAccion" value="Eliminar">Eliminar</button>
                             </td>
                         </tr>
-                    ))}
+                    ))
+                    }
                     <tr>
                         <td colSpan={2} align="right">
                             <h3>Total</h3>

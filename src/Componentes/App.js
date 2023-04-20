@@ -45,7 +45,7 @@ class App extends React.Component {
           <NavbarLibros carrito={this.state.carrito.length} />
           <Routes>
             <Route path="/" exact element={<Home productos={this.state.productos} manejador={(p) => this.manejador(p)} />}></Route>
-            <Route path="/carrito" element={<Carrito cart={this.state.carrito} />}></Route>
+            <Route path="/carrito" element={<Carrito cart={this.state.carrito} eliminarProducto={(p)=>this.eliminarProducto(p)} />}></Route>
           </Routes>
         </div>
       </Router>
@@ -59,6 +59,11 @@ class App extends React.Component {
       this.setState({ 'carrito': nuevoCarrito });
     }
 
+  }
+  eliminarProducto(p){
+    const nuevoCarrito = [...this.state.carrito];
+    const filtrado=nuevoCarrito.filter(prod=>prod!==p);
+    this.setState({'carrito':filtrado});
   }
 }
 
