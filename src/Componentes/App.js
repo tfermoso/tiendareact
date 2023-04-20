@@ -68,6 +68,28 @@ class App extends React.Component {
     const filtrado=nuevoCarrito.filter(prod=>prod!==p);
     this.setState({'carrito':filtrado});
   }
+
+  pagar(email){
+    let datos={
+      'carrito':this.state.carrito,
+      'email':email
+    }
+    let url="http://localhost:3500/pagar";
+    fetch(url,{
+      method:'POST',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body:JSON.stringify(datos)
+    })
+    .then(datos=>datos.json())
+    .then(datos=>{
+      console.log(datos);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  }
 }
 
 export default App;
