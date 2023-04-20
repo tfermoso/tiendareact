@@ -1,5 +1,6 @@
 function Carrito(props) {
     let total = 0;
+    let novacio=props.cart.length;
     props.cart.map(p=>total+=parseFloat(p.cantidad*p.precio));
     return (
         <div>
@@ -38,9 +39,10 @@ function Carrito(props) {
                         </td>
                         <td></td>
                     </tr>
-                    <tr>
+                    
+                    {novacio && (<tr>
                     <td colSpan={5}>
-                        <form action="">
+                        <form onSubmit={(e)=>{e.preventDefault(); props.pagar(document.getElementById("email").value)}}  action="">
                             <div class="alert alert-success" role="alert">
                                 <div class="mb-3">
                                     <label for="" class="form-label">Email</label>
@@ -55,7 +57,7 @@ function Carrito(props) {
 
                         </form>
                     </td>
-                </tr>
+                </tr>)}
                 </tbody>
             </table>
 
