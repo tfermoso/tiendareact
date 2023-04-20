@@ -22,9 +22,10 @@ class App extends React.Component {
   }
   componentDidMount() {
     const datosCarrito = JSON.parse(localStorage.getItem('carrito'));
-    if(datosCarrito.length>0){
-      this.setState({'carrito':datosCarrito})
-    }
+    if (Array.isArray(datosCarrito))
+      if (datosCarrito.length > 0) {
+        this.setState({ 'carrito': datosCarrito })
+      }
     fetch("http://localhost:3500")
       .then(datos => datos.json())
       .then(datos => {
@@ -55,10 +56,10 @@ class App extends React.Component {
           <NavbarLibros carrito={this.state.carrito.length} />
           <Routes>
             <Route path="/" exact element={<Home productos={this.state.productos} manejador={(p) => this.manejador(p)} />}></Route>
-            <Route path="/carrito" element={<Carrito 
-            cart={this.state.carrito} 
-            eliminarProducto={(p)=>this.eliminarProducto(p)}
-            pagar={(email)=>{ this.pagar(email) }} />}></Route>
+            <Route path="/carrito" element={<Carrito
+              cart={this.state.carrito}
+              eliminarProducto={(p) => this.eliminarProducto(p)}
+              pagar={(email) => { this.pagar(email) }} />}></Route>
           </Routes>
         </div>
       </Router>
@@ -67,43 +68,43 @@ class App extends React.Component {
   manejador(p) {
     const nuevoCarrito = [...this.state.carrito];
     if (nuevoCarrito.indexOf(p) < 0) {
-      p.cantidad=1;
+      p.cantidad = 1;
       nuevoCarrito.push(p);
       this.setState({ 'carrito': nuevoCarrito });
     }
 
   }
-  eliminarProducto(p){
+  eliminarProducto(p) {
     const nuevoCarrito = [...this.state.carrito];
-    const filtrado=nuevoCarrito.filter(prod=>prod!==p);
-    this.setState({'carrito':filtrado});
+    const filtrado = nuevoCarrito.filter(prod => prod !== p);
+    this.setState({ 'carrito': filtrado });
   }
 
-  pagar(email){
-    let nuevoCarrito=this.state.carrito.map(p=>({
-        id:p.id,
-        precio:p.precio,
-        cantidad:p.cantidad
+  pagar(email) {
+    let nuevoCarrito = this.state.carrito.map(p => ({
+      id: p.id,
+      precio: p.precio,
+      cantidad: p.cantidad
     }))
-    let datos={
-      'carrito':nuevoCarrito,
-      'email':email
+    let datos = {
+      'carrito': nuevoCarrito,
+      'email': email
     }
-    let url="http://localhost:3500/pagar";
-    fetch(url,{
+    let url = "http://localhost:3500/pagar";
+    fetch(url, {
       method: 'POST',
-      headers:{
+      headers: {
         'Content-Type': 'application/json'
       },
-      body:JSON.stringify(datos)
+      body: JSON.stringify(datos)
     })
-    .then(datos=>datos.json())
-    .then(datos=>{
-      console.log(datos);
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
+      .then(datos => datos.json())
+      .then(datos => {
+        console.log(datos);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 }
 
