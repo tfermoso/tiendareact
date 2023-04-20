@@ -1,4 +1,5 @@
 function Carrito(props) {
+    console.log("se ha cambiado el carrito en Carrito")
     let total = 0;
 
     props.cart.map(p => total += parseFloat(p.cantidad * p.precio));

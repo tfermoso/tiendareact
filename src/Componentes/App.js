@@ -14,8 +14,17 @@ class App extends React.Component {
 
     };
   }
-
+  componentDidUpdate(prevProps, prevState) {
+    // Guardar los datos del carrito en local storage si ha habido cambios
+    if (prevState.carrito !== this.state.carrito) {
+      localStorage.setItem('carrito', JSON.stringify(this.state.carrito));
+    }
+  }
   componentDidMount() {
+    const datosCarrito = JSON.parse(localStorage.getItem('carrito'));
+    if(datosCarrito.length>0){
+      this.setState({'carrito':datosCarrito})
+    }
     fetch("http://localhost:3500")
       .then(datos => datos.json())
       .then(datos => {
@@ -39,6 +48,7 @@ class App extends React.Component {
   }
 
   render() {
+
     return (
       <Router>
         <div className="container">

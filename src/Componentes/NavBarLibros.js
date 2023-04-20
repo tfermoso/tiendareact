@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 function NavbarLibros(props){
-
   useEffect(()=>{
     //console.log("use effect en NavBarLibros");
   })
