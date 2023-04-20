@@ -1,4 +1,5 @@
 function Carrito(props) {
+    let total = 0;
 
     return (
         <div>
@@ -19,16 +20,25 @@ function Carrito(props) {
                             <th scope="row">{p.nombre}</th>
                             <td>{p.cantidad}</td>
                             <td>{p.precio}</td>
-                            <td>{p.cantidad*p.precio}€</td>
+                            <td>{p.cantidad * p.precio}€</td>
                             <td>
-                                
+
                             </td>
                         </tr>
                     ))}
+                    <tr>
+                        <td colSpan={2} align="right">
+                            <h3>Total</h3>
+                        </td>
+                        <td colSpan={2} align="right">
+                            <h3>{total}€</h3>
+                        </td>
+                        <td></td>
+                    </tr>
                 </tbody>
             </table>
 
-        </div>
+        </div >
     )
 }
 export default Carrito;
