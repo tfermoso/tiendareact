@@ -105,7 +105,7 @@ class App extends React.Component {
     })
       .then(datos => datos.json())
       .then(datos => {
-        if(datos.resp=="ok"){
+        if(datos.resp==="ok"){
             let pago=this.state.pago;
             pago.idVenta=datos.idVenta;
             pago.total=datos.total;
