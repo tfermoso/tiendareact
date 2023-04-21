@@ -22,23 +22,45 @@ export default function Pagar(props) {
                     <PayPalScriptProvider options={{ "client-id": "AdfZo6m0qnNparPX5S_Q9ymLKJn1h-2B06CKB4i4nNHddwd8rQN7ORAz90tesaaQMXorRrcLCKJDe11a" }}>
                         <PayPalButtons
                             style={style}
-                        createOrder={(data, actions) => {
-                            return actions.order.create({
-                                purchase_units: [
-                                    {
-                                        amount: {
-                                            value: props.total,
+                            createOrder={(data, actions) => {
+                                return actions.order.create({
+                                    purchase_units: [
+                                        {
+                                            amount: {
+                                                value: props.total,
+                                                currency: 'EUR'
+                                            },
+                                            description: 'Compra en la tienda',
+                                            reference_id: props.id
                                         },
-                                    },
-                                ],
-                            });
-                        }}
-                        onApprove={(data, actions) => {
-                            return actions.order.capture().then((details) => {
-                                const name = details.payer.name.given_name;
-                                alert(`Transaction completed by ${name}`);
-                            });
-                        }}
+                                    ],
+                                });
+                            }}
+                            onCancel={(data, actions) => {
+                                alert("Pago cancelado");
+                                console.log(data);
+                            }}
+                            onApprove={(data, actions) => {
+                                return actions.order.capture().then((details) => {
+                                    const name = details.payer.name.given_name;
+                                    alert(`Transaction completed by ${name}`);
+                                    fetch("http://localhost:3500/confirmarpago", {
+                                        method: "POST",
+                                        headers: {
+                                            'content-type': 'application/json'
+                                        },
+                                        body: JSON.stringify({
+                                            datos: details
+                                        })
+                                    }).then(data => data.text())
+                                        .then(datos => {
+                                            console.log(datos);
+                                            
+                                        }).catch(err => {
+                                            console.log(err);
+                                        })
+                                });
+                            }}
                         />
                     </PayPalScriptProvider>
                 </div>

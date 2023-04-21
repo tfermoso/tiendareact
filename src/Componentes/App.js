@@ -61,7 +61,7 @@ class App extends React.Component {
               cart={this.state.carrito}
               eliminarProducto={(p) => this.eliminarProducto(p)}
               pagar={(email) => { this.pagar(email) }} />}></Route>
-            <Route path="/pagar"  element={<Pagar total={300} />}></Route>
+            <Route path="/pagar"  element={<Pagar total={300} id={2}/>}></Route>
 
           </Routes>
 
