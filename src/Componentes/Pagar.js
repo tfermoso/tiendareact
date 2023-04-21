@@ -1,9 +1,9 @@
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-
+import './Pagar.css';
 export default function Pagar(props) {
     return (
         <div>
-            <div class="p-5 mb-4 bg-light rounded-3 text-center">
+            <div class="contenedorPagar p-5 mb-4 bg-light rounded-3 text-center">
                 <div class="container-fluid py-5">
                     <h1 class="display-5 fw-bold"> ¡Paso Final! </h1>
                     <hr />

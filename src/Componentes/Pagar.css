@@ -1,0 +1,7 @@
+.contenedorPagar{
+    margin:0 !important;
+    padding: 0 !important;
+}
+.contenedorPagar >div:first-child{
+    padding-top: 20px !important;
+}
