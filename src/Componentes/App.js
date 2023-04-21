@@ -11,7 +11,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       'carrito': [],
-      'productos': []
+      'productos': [],
+      'pago':{}
 
     };
   }
@@ -104,7 +105,12 @@ class App extends React.Component {
     })
       .then(datos => datos.json())
       .then(datos => {
-        console.log(datos);
+        if(datos.resp=="ok"){
+            let pago=this.state.pago;
+            pago.idVenta=datos.idVenta;
+            pago.total=datos.total;
+            this.setState({pago:pago})
+        }
       })
       .catch((err) => {
         console.log(err);
