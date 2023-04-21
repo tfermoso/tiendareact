@@ -14,7 +14,7 @@ export default function Pagar(props) {
                     <h1 class="display-5 fw-bold"> ¡Paso Final! </h1>
                     <hr />
                     <p class="col-md-8 fs-4"> Estas a punto de pagar con paypal la cantidad de:
-                        <h4> {props.total}€ </h4>
+                        <h4> {props.pago.total}€ </h4>
                         <div id="paypal-button-container">
                         </div>
                     </p>
@@ -27,11 +27,11 @@ export default function Pagar(props) {
                                     purchase_units: [
                                         {
                                             amount: {
-                                                value: props.total,
+                                                value: props.pago.total,
                                                 currency: 'EUR'
                                             },
                                             description: 'Compra en la tienda',
-                                            reference_id: props.id
+                                            reference_id: props.pago.id
                                         },
                                     ],
                                 });

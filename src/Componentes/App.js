@@ -4,7 +4,9 @@ import React from 'react';
 import Home from './Home';
 import Carrito from './Carrito';
 import NavbarLibros from './NavBarLibros';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes   } from 'react-router-dom';
+
+
 import Pagar from './Pagar';
 class App extends React.Component {
   constructor(props) {
@@ -62,7 +64,7 @@ class App extends React.Component {
               cart={this.state.carrito}
               eliminarProducto={(p) => this.eliminarProducto(p)}
               pagar={(email) => { this.pagar(email) }} />}></Route>
-            <Route path="/pagar"  element={<Pagar total={300} id={2}/>}></Route>
+            <Route path="/pagar"  element={<Pagar pago={this.state.pago} />}></Route>
 
           </Routes>
 
@@ -86,6 +88,7 @@ class App extends React.Component {
   }
 
   pagar(email) {
+    
     let nuevoCarrito = this.state.carrito.map(p => ({
       id: p.id,
       precio: p.precio,
@@ -110,6 +113,8 @@ class App extends React.Component {
             pago.idVenta=datos.idVenta;
             pago.total=datos.total;
             this.setState({pago:pago})
+            
+            window.location="pagar";
         }
       })
       .catch((err) => {
