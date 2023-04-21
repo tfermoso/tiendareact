@@ -5,6 +5,7 @@ import Home from './Home';
 import Carrito from './Carrito';
 import NavbarLibros from './NavBarLibros';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Pagar from './Pagar';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -61,6 +62,7 @@ class App extends React.Component {
               eliminarProducto={(p) => this.eliminarProducto(p)}
               pagar={(email) => { this.pagar(email) }} />}></Route>
           </Routes>
+          <Pagar total={300}/>
         </div>
       </Router>
     );
