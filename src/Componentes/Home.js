@@ -1,4 +1,5 @@
 import Producto from "./Producto";
+import Pagar from "./Pagar";
 function Home(props) {
     return (
         <div className="row">
@@ -9,6 +10,7 @@ function Home(props) {
                     onClick2={() => props.manejador(producto)}
                 />
             ))}
+            <Pagar total={300}/>
         </div>
     )
 }
